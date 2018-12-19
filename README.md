@@ -26,11 +26,11 @@ To reproduce the results in the paper exactly, you will have to do two further p
 
 ## Step 2: Run the random forest classifier with the full feature set
 
-The classification code is written in Python 2.7.10. It has the following dependencies: scipy, numpy, scikit-learn (must be v. 0.19 or earlier), pandas, and openpyxl. 
+The classification code is written in Python 2.7.10. It has the following dependencies: scipy, numpy, scikit-learn (must be v. 0.19 or earlier), pandas, and openpyxl. Detailed information about dependencies (including full version numbers) is provided in 'requirements.txt'.
 
-It is recommended that you create a virtual environment for this project before installing the required packages and running this code. If you have not done so previously, you will need to install virtualenv (e.g., by running `pip install virtualenv`). To create a virtual environment called 'venv_Latin_prose_verse', type `virtualenv Latin_prose_verse`. To activate the virtual environment, type `source venv_Latin_prose_verse/bin/activate` when in the main ('code') directory. 
+It is recommended that you create a virtual environment for this project before installing the required packages and running this code. If you have not done so previously, you will need to install virtualenv (e.g., by running `pip install virtualenv`). To create a virtual environment called 'venv_Latin_prose_verse', type `virtualenv venv_Latin_prose_verse`. To activate the virtual environment, type `source venv_Latin_prose_verse/bin/activate` when in the main ('code') directory. 
 
-Before running the replication experiments, install the five required packages (e.g., `pip install scikit-learn==0.19.1` for scikit-learn). 
+Before running the replication experiments, install the five required packages by running `pip install -r requirements.txt`.
 
 To reproduce RF results:
 
