@@ -1,0 +1,198 @@
+<template name="sresults">
+  <div class="page_heading_bg">
+      <div class="container">
+          <h1 style="text-transform: none;">Stylometry</h1>
+      </div>
+  </div>
+  <div class="section section_main_body" id="wrapper">
+    <div class="container2">
+        <div class="row">
+    <div class="fcontainer col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="panel panel-transparent sresult">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-b-5 p-l-0 p-r-0 pull_right">
+          <button type="submit" class="btn btn-primary btn-sm newsearch"><i class="fa fa-search m-r-5"></i> New Search</button>
+          <button type="submit" class="btn btn-primary btn-sm saveResult"><i class="fa fa-file-text-o"></i> Export Results</button>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                {{> yield 'stylooption'}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="modal fade slide-up disable-scroll" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="modalSlideUpLabel" aria-hidden="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="panel panel-transparent">
+        <div class="panel-body no-padding">
+        <div id="portlet-advance" class="panel panel-default">
+        <div class="panel-heading">
+
+                      </div>
+        <div class="panel-body">
+                  <div class="row row-same-height">
+                  <div class="m-l-20 m-r-20 sm-p-l-15 sm-p-r-15 sm-p-t-40">
+        <p class="p-t-35">Choose a file name to export in csv format.</p>
+        <form id="saveResultForm" class="p-t-15" role="form">
+        <div class="form-group form-group-default">
+        <label>File Name</label>
+        <div class="controls">
+        <input type="text" id="fileName" name="email" class="form-control input-sm" required>
+        </div>
+        </div>
+        <div class="pull-right">
+          <button class="btn btn-success btn-cons m-t-10" id="closeExportModal" type="button">Cancel</button>
+          <button class="btn btn-primary btn-cons m-t-10" id="exportResult" type="submit">Submit</button>
+        </div>
+        </form>
+                  </div>
+        </div>
+        </div>
+        <div class="panel-footer"></div>
+        </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+<template name="stylometrytable">
+  <div class="row toplevel" style="display:none">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-t-15 stable">
+    <div class="swrapper">
+      <div id="stable"></div>
+    </div>
+  </div>
+</div>
+</template>
+
+<template name="stylometrycompare">
+  <div class="fcontainer col-lg-12 col-md-12 col-sm-12 col-xs-12 p-l-0">
+    <div class="panel panel-transparent fsearch">
+      <div class="panel-body no-padding">
+        <div id="portlet-advance" class="panel panel-default panelBorder">
+          <div class="panel-heading">
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="finterface col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="m-t-15">
+                  <div class="col-md-8 offset-md-4">
+                    <div class="row">
+                      <div id="comparegraph"></div>
+                    </div>
+                  </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+  </div>
+  </div>
+</template>
+
+<template name="stylometrygraph">
+  <div class="row toplevel" style="display:none">
+  {{#each nocharts}}
+        <div class="col-lg-6 col-sm-12 col-xs-12 col-md-12 p-l-0 p-r-0">
+          <div class="panel panel-transparent fsearch">
+            <div class="panel-body no-padding">
+              <div id="portlet-advance" class="panel panel-default panelBorder">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+              <h2>{{header}}</h2>
+            </div>
+            <div class="box-divider m-0"></div>
+            <div class="box-body">
+              <canvas id={{feature}} height="300"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+   </div>
+  {{/each}}
+</div>
+</template>
+
+<template name="compareFeatures">
+  <div class="col-sm-6 col-xs-12 col-lg-6 col-md-6 col-md-offset-3 col-lg-offset-3 col-sm-offset-3 p-l-0 p-r-0" id="compareSelect">
+    <div class="panel panel-transparent fsearch">
+      <div class="panel-body no-padding">
+        <div id="portlet-advance" class="panel panel-default panelBorder">
+          <div class="panel-heading">
+          </div>
+          <div class="panel-body">
+            <div class="row">
+        <h2>Compare Features</h2><br>
+        <small>Select two features you would like to compare in a scatterplot.</small>
+      </div>
+        <form id="compareFeaturesForm">
+          <div class="form-group">
+          <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="form-group form-group-default form-group-default-select2">
+            <label for="name">Feature 1</label>
+            <select name="feature1" class="full-width input-sm select2">
+              <option></option>
+              {{#each comparefeatures}}
+              <option value="{{this.value}}">{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="form-group form-group-default form-group-default-select2">
+            <label for="corpusSubName">Feature 2</label>
+            <select name="feature2" class="full-width input-sm select2">
+              <option></option>
+              {{#each comparefeatures}}
+              <option value="{{this.value}}">{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="pull-right">
+          <button class="btn btn-success btn-cons m-b-10 reset" type="button"><i class="fa fa-refresh"></i> Reset</button>
+          <button type="submit" class="btn btn-primary btn-cons m-b-10"><i class="fa fa-search"></i> Submit</button><br><br>
+        </div>
+      </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="col-sm-6 col-xs-12 col-lg-6 col-md-6 col-md-offset-3 col-lg-offset-3 col-sm-offset-3 p-l-0 p-r-0" id="compareView" style="display:none">
+  <div class="panel panel-transparent">
+    <div class="panel-body no-padding">
+      <div id="portlet-advance" class="panel panel-default panelBorder">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-body">
+          <div class="row">
+    <canvas id="scatterChart" height="400"></canvas>
+  </div>
+</div>
+  </div>
+</div>
+</div>
+</div>
+</template>

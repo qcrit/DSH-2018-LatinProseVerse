@@ -1,0 +1,23 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" Content="width=device-width, initial-scale=1.0">
+    <meta name="description" Content="">
+    <meta name="author" Content="">
+
+    <title>QCL</title>
+</head>
+
+
+<template name="mainlayout">
+	     {{> yield}}
+<style>
+        header {
+            margin-bottom: 0 !important;
+        }
+
+        .selected {
+            border: 1px solid #888;
+            background-color: #0ff;
+        }
+    </style>
+</template>

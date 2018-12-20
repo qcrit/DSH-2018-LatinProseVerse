@@ -1,0 +1,349 @@
+<template name="stylometry">
+
+  <div class="page_heading_bg">
+      <div class="container">
+          <h1 style="text-transform: none;">Stylometry</h1>
+      </div>
+  </div>
+  <div class="section_dark section_main_body">
+      <div class="container2">
+          <div class="row">
+  		<div class="fcontainer col-md-12 col-xs-12">
+  		<div class="panel panel-transparent ssearch">
+  <div class="panel-body no-padding">
+  <div id="portlet-advance" class="panel panel-default">
+  <div class="panel-heading">
+
+  							</div>
+  <div class="panel-body">
+                    <div class="row">
+                      <div class="finterface col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="m-t-15">
+                          <form id="fsearch">
+                            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12 b-r b-dashed b-grey">
+  						              <div class="form-group">
+                            <h3 class="text-primary">Text Selection</h3><hr>
+                            <p>Select an author/text pair or a more specific work with author/text/book from the dropdown menus.  Once you have made a selection, click add.  You can select one work or many.</p>
+                            <div class="form-group m-t-20">
+  							              <div class="row clearfix">
+                                <div class="col-lg-12 col-xs-12">
+                                  <div class="form-group fauthor form-group-default form-group-default-select2">
+                                    <label>Author</label>
+                                    <select id="fauthor" name="fauthor" class="full-width input-sm fauthor select2">
+                    									<option></option>
+                    									{{#each authors}}
+                    									  <option value="{{this}}">{{this}}</option>
+                    									{{/each}}
+                  									</select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row clearfix">
+                                <div class="col-md-12 col-xs-12">
+                                  <div class="ftext form-group form-group-default form-group-default-select2 disabled">
+                                    <label>Text</label>
+                                    <select id="ftext" name="ftext" class="ftext full-width input-sm select2" disabled>
+                  									   <option></option>
+                  									   {{#each texts}}
+                  									   <option value="{{this}}">{{this}}</option>
+                  									   {{/each}}
+                  								  </select>
+                                  </div>
+                                </div>
+  							              </div>
+                              <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                  <div class="fbook form-group form-group-default form-group-default-select2 disabled">
+                                    <label>Book</label>
+                                    <select id="fbook" name="fbook" class="fbook full-width input-sm select2" disabled>
+                  									   <option></option>
+                  									   {{#each books}}
+                  									   <option value="{{this}}">{{removepart this}}</option>
+                  									   {{/each}}
+                  								  </select>
+                                  </div>
+                                </div>
+  							              </div>
+                <div class="row clearfix">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <span class="corpus">
+                  <div class="checkbox">
+    								<input type="checkbox" id="selectAll">
+    								<label for="selectAll">Select All</label>
+  								</div>
+                </span>
+              </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <span class="pull-right addmore"><i class="fa fa-plus"></i> Add</span>
+              </div>
+            </div>
+  							</div>
+  							</div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <h3 class="text-primary">Selected Texts</h3><hr>
+                <p>This table shows the works selected from the text selection menu.  If you would like to remove a selection, just click the remove button.</p>
+                <div class="table-responsive m-t-20">
+                    <table class="table-responsive table table-striped" id="stylocorpus">
+                        <thead>
+                            <tr>
+                                <th class="col-md-3 col-lg-3 col-sm-3">Author</th>
+                                <th class="col-md-3 col-lg-3 col-sm-3">Text</th>
+                                <th class="col-md-3 col-lg-3 col-sm-3">Book</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stylorows">
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <ul id="dynamic-list" class="p-l-0"></ul>
+              </div>
+                <div class="row clearfix hidden-xs">
+
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3 class="text-primary">Feature Selection</h3><hr>
+                <p>Select the stylometric features you would like computed below.  You have the option of selecting multiple features per category.</p>
+              </div>
+              <div class="col-lg-6">
+              <h5 class="m-t-20">Pronouns</h5><hr>
+              <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="pronouns form-group form-group-default form-group-default-select2">
+                    <label>Select</label>
+                    <select id="pronouns" multiple=multiple name="pronouns" class="pronouns full-width input-sm select2">
+                      <option value="p1">Personal Pronouns</option>
+                      <option value="p2">Demonstrative Pronouns</option>
+                      <option value="p3"><i>Quidam</i></option>
+                      <option value="p4">Third-Person Pronouns</option>
+                      <option value="p5"><i>Iste</i></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <h5 class="m-t-20">Non-Content Adjectives</h5><hr>
+              <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="adjectives form-group form-group-default form-group-default-select2">
+                    <label>Select</label>
+                    <select id="adjectives" multiple=multiple name="adjectives" class="adjectives full-width input-sm select2">
+                      <option value="n1">Alius</option>
+                      <option value="n2">Ipse</option>
+                      <option value="n3">Idem</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <h5 class="m-t-20">Conjunctions</h5><hr>
+              <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="conjunctions form-group form-group-default form-group-default-select2">
+                    <label>Select</label>
+                    <select id="conjunctions" multiple=multiple name="conjunctions" class="conjunctions full-width input-sm select2">
+                      <option value="c1">Aggregate Frequency of Conjunctions</option>
+                      <option value="c2">Frequency of <i>Atque</i> followed by Consonant</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+              <div class="col-lg-6">
+                <h5 class="m-t-20">Subordinate Clauses</h5><hr>
+                <div class="row clearfix">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="subordinate form-group form-group-default form-group-default-select2">
+                      <label>Select</label>
+                      <select id="subordinate" multiple=multiple name="subordinate" class="subordinate full-width input-sm select2">
+                        <option value="s1">Conditional Clauses</option>
+                        <option value="s2"><i>Cum</i> Clauses</option>
+                        <option value="s3"><i>Quin</i> Clauses</option>
+                        <option value="s4"><i>Quominus</i> Clauses</option>
+                        <option value="s5"><i>Antequam</i> Clauses</option>
+                        <option value="s6"><i>Priusquam</i> Clauses</option>
+                        <option value="s7"><i>Dum</i> Clauses</option>
+                        <option value="s8">Fraction of Sentences (Relative Clauses)</option>
+                        <option value="s9">Mean (Relative Clauses)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <h5 class="m-t-20">Miscellaneous</h5><hr>
+                <div class="row clearfix">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="miscellaneous form-group form-group-default form-group-default-select2">
+                      <label>Select</label>
+                      <select id="miscellaneous" multiple=multiple name="miscellaneous" class="miscellaneous full-width input-sm select2">
+                        <option value="m1">Interrogative Sentences</option>
+                        <option value="m2">Selected Vocatives</option>
+                        <option value="m3">Regular Superlative Adjectives & Adverbs</option>
+                        <option value="m4">ut Clauses</option>
+                        <option value="m5">Selected Gerunds & Gerundives</option>
+                        <option value="m6">Mean (Sentence Length)</option>
+                        <option value="m7">Aggregate Frequency of Prepositions</option>
+                        <option value="m8">Top 5 N-Grams</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <button type="submit" class="btn btn-primary btn-cons m-l-5 m-b-10 m-r-15 pull-right"><i class="fa fa-search"></i> Submit</button>
+                  <button class="btn btn-success btn-cons m-b-10 reset pull-right" type="button"><i class="fa fa-refresh"></i> Reset</button>
+                </div>
+  						</div>
+
+                          </form>
+
+                      </div>
+                    </div></div>
+  </div>
+  <div class="panel-footer">
+
+  							</div>
+
+  		</div>
+  		</div>
+  	</div>
+
+    <div class="panel panel-transparent sloading" style="display:none">
+  		<div class="panel-body no-padding">
+  			<div id="portlet-advance" class="panel panel-default">
+  				<div class="panel-heading">
+
+  				</div>
+  				<div class="panel-body p-b-0 p-l-0 p-r-0">
+  					<div class="no-result loader-height">
+  					<center><h2>Analyzing Text</h2></center>
+  					<div class="loader-wrapper p-t-50">
+  						<div class="loader-container">
+  							<div class="line-scale-pulse-out loader-deep-orange">
+  								<div></div>
+  								<div></div>
+  								<div></div>
+  								<div></div>
+  								<div></div>
+  							</div>
+  						</div>
+  					</div>
+  					</div>
+  				</div>
+  				<div class="panel-footer">
+
+  				</div>
+
+  		</div>
+  		</div>
+  	</div>
+
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade slide-up disable-scroll" id="modal-compare" tabindex="-1" role="dialog" aria-labelledby="modalSlideUpLabel" aria-hidden="false">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="container2">
+          <div class="row">
+            <div class="fcontainer col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <p>Select two features you would like to compare in a scatterplot.</p>
+              <form id="comparef">
+              <div class="form-group m-t-20">
+                <div class="row clearfix">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group form-group-default form-group-default-select2">
+                      <label>Feature 1</label>
+                      <select id="feature1" name="feature1" class="full-width input-sm feature1 select2">
+                        <option>Select Feature</option>
+                        <option value="p1">Frequency of Personal Pronouns</option>
+                        <option value="p2">Frequency of Demonstrative Pronouns</option>
+                        <option value="p3"><i>Frequency of Quidam</i></option>
+                        <option value="p4">Frequency of Third-Person Pronouns</option>
+                        <option value="p5"><i>Frequency of Iste</i></option>
+                        <option value="n1">Frequency of Alius</option>
+                        <option value="n2">Frequency of Ipse</option>
+                        <option value="n3">Frequency of Idem</option>
+                        <option value="c1">Aggregate Frequency of Conjunctions</option>
+                        <option value="c2">Frequency of <i>Atque</i> followed by Consonant</option>
+                        <option value="s1">Frequency of Conditional Clauses</option>
+                        <option value="s2">Frequency of <i>Cum</i> Clauses</option>
+                        <option value="s3">Frequency of <i>Quin</i> Clauses</option>
+                        <option value="s4">Frequency of <i>Quominus</i> Clauses</option>
+                        <option value="s5">Frequency of <i>Antequam</i> Clauses</option>
+                        <option value="s6">Frequency of <i>Priusquam</i> Clauses</option>
+                        <option value="s7">Frequency of <i>Dum</i> Clauses</option>
+                        <option value="s8">Fraction of Sentences (Relative Clauses)</option>
+                        <option value="s9">Mean (Relative Clauses)</option>
+                        <option value="m1">Frequency of Interrogative Sentences</option>
+                        <option value="m2">Frequency of Selected Vocatives</option>
+                        <option value="m3">Frequency of Regular Superlative Adjectives & Adverbs</option>
+                        <option value="m4">Frequency of ut Clauses</option>
+                        <option value="m5">Frequency of Selected Gerunds & Gerundives</option>
+                        <option value="m6">Mean (Sentence Length)</option>
+                        <option value="m7">Aggregate Frequency of Prepositions</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row clearfix">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="ftext form-group form-group-default form-group-default-select2">
+                      <label>Feature 2</label>
+                      <select id="feature2" name="feature2" class="feature2 full-width input-sm select2">
+                        <option>Select Feature</option>
+                        <option value="p1">Frequency of Personal Pronouns</option>
+                        <option value="p2">Frequency of Demonstrative Pronouns</option>
+                        <option value="p3"><i>Frequency of Quidam</i></option>
+                        <option value="p4">Frequency of Third-Person Pronouns</option>
+                        <option value="p5"><i>Frequency of Iste</i></option>
+                        <option value="n1">Frequency of Alius</option>
+                        <option value="n2">Frequency of Ipse</option>
+                        <option value="n3">Frequency of Idem</option>
+                        <option value="c1">Aggregate Frequency of Conjunctions</option>
+                        <option value="c2">Frequency of <i>Atque</i> followed by Consonant</option>
+                        <option value="s1">Frequency of Conditional Clauses</option>
+                        <option value="s2">Frequency of <i>Cum</i> Clauses</option>
+                        <option value="s3">Frequency of <i>Quin</i> Clauses</option>
+                        <option value="s4">Frequency of <i>Quominus</i> Clauses</option>
+                        <option value="s5">Frequency of <i>Antequam</i> Clauses</option>
+                        <option value="s6">Frequency of <i>Priusquam</i> Clauses</option>
+                        <option value="s7">Frequency of <i>Dum</i> Clauses</option>
+                        <option value="s8">Fraction of Sentences (Relative Clauses)</option>
+                        <option value="s9">Mean (Relative Clauses)</option>
+                        <option value="m1">Frequency of Interrogative Sentences</option>
+                        <option value="m2">Frequency of Selected Vocatives</option>
+                        <option value="m3">Frequency of Regular Superlative Adjectives & Adverbs</option>
+                        <option value="m4">Frequency of ut Clauses</option>
+                        <option value="m5">Frequency of Selected Gerunds & Gerundives</option>
+                        <option value="m6">Mean (Sentence Length)</option>
+                        <option value="m7">Aggregate Frequency of Prepositions</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row clearfix">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button type="submit" class="btn btn-primary btn-cons m-l-5 m-b-10 m-r-15 pull-right"><i class="fa fa-search"></i> Submit</button>
+                    <button class="btn btn-success btn-cons m-b-10 reset pull-right" type="button"><i class="fa fa-refresh"></i> Reset</button>
+                  </div>
+    						</div>
+           </div>
+         </form>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
+</div>
+</template>

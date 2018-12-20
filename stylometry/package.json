@@ -1,0 +1,25 @@
+{
+  "name": "stylometry",
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.48",
+    "@knod/sbd": "^2.0.2",
+    "chart.js": "^2.7.2",
+    "jquery": "^3.3.1",
+    "meteor-node-stubs": "^0.4.1",
+    "to-csv": "^0.1.1"
+  },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.js",
+      "server": "server/main.js"
+    },
+    "testModule": "test/main.js"
+  }
+}
