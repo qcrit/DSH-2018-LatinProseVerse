@@ -1,0 +1,2 @@
+{"{themeteorchef:bert}/stylesheets/colors.scss":"dec19908e847211717446d301643eac7dfe2814d"}
+{"css":"","sourceMap":{"version":3,"file":".colors.scss","sourceRoot":".","sources":["./packages/themeteorchef_bert/stylesheets/colors.scss"],"sourcesContent":["$red:      #da5347;\n$green:    #75ba50;\n$blue:     #1b9edb;\n$yellow:   #fad131;\n$black-0:  #333333;\n$black-1:  #444444;\n$black-2:  #666666;\n$black-3:  #888888;\n$black-4:  #aaaaaa;\n$black-5:  #cccccc;\n$black-6:  #dddddd;\n$black-7:  #eeeeee;\n"],"names":[],"mappings":""}}

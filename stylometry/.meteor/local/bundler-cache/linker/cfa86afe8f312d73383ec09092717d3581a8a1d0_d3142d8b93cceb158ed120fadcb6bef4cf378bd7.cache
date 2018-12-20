@@ -1,0 +1,1 @@
+[{"type":"js","data":"(function () {\n\n/* Package-scope variables */\nvar Bert;\n\n\n\n/* Exports */\nPackage._define(\"themeteorchef:bert\", {\n  Bert: Bert\n});\n\n})();\n","servePath":"/packages/themeteorchef_bert.js"}]

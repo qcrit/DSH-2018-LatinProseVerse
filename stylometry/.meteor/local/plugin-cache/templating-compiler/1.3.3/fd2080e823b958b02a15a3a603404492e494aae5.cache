@@ -1,0 +1,1 @@
+{"head":"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui\">\n   <title>QCL Stylometry</title>","body":"","js":"\nTemplate.body.addContent((function() {\n  var view = this;\n  return \"\";\n}));\nMeteor.startup(Template.body.renderToDocument);\n","bodyAttrs":{}}
